@@ -1,4 +1,4 @@
-import { DetailsType } from "./contexts/DetailsContext";
+import { DetailsType } from "../contexts/DetailsContext";
 
 export default function handleFormat(details: DetailsType, type: string) {
   const bold = type === "ws" ? "*" : "**";
@@ -64,14 +64,14 @@ export default function handleFormat(details: DetailsType, type: string) {
   ${details.involved}
 
   ${actionHeader}
-  ${details.actions}
+  ${details.actions === "" ? "NIL" : details.actions}
 
   ${civiInvolvedHeader}
-  ${details.idetails}
+  ${details.idetails === "" ? "NIL" : details.idetails}
   
   ${formsgHeader}
-  GSOC: ${details.gsoc}
-  FormSG: ${details.formsg}
+  GSOC: ${details.gsoc === "" ? "NIL" : details.gsoc}
+  FormSG: ${details.formsg === "" ? "NIL" : details.formsg}
   
   ${roHeader}
   ${details.ro}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDetails } from "../contexts/DetailsContext";
-import handleFormat from "../handleFormat";
+import handleFormat from "../utils/handleFormat";
 import Clipboard from "./Clipboard";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
