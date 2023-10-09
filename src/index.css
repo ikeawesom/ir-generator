@@ -9,7 +9,8 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-input {
+input,
+textarea.field {
   border-width: 1px;
   @apply shadow-sm border-slate-200 rounded-md p-2 mb-4;
 }
