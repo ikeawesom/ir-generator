@@ -10,9 +10,12 @@ export default function FormContainer() {
 
   const handleSubmit = (e: React.FormEvent) => {
     setLoading(true);
+    setDetails({ ...details, submit: false });
     e.preventDefault();
-    setDetails({ ...details, submit: true });
-    setLoading(false);
+    setTimeout(() => {
+      setDetails({ ...details, submit: true });
+      setLoading(false);
+    }, 1000);
   };
 
   const handleChange = (
