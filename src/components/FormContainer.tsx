@@ -27,7 +27,7 @@ export default function FormContainer() {
   };
 
   return (
-    <div className="bg-white md:p-8 sm:p-6 p-4 rounded-lg shadow-md sm:w-[580px] w-[90vw]">
+    <div className="bg-white md:p-8 sm:p-6 p-4 rounded-lg shadow-md sm:w-[580px] w-[85vw]">
       <p className="text-red-500 text-sm text-start mb-4">*Required fields</p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <FormHeading>General Details</FormHeading>
