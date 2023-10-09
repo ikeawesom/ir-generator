@@ -1,36 +1,18 @@
 import { useState } from "react";
 import FormHeading from "./FormHeading";
 import Spinner from "./Spinner";
+import { useDetails } from "../contexts/DetailsContext";
 
 export default function FormContainer() {
-  const [details, setDetails] = useState({
-    unit: "",
-    nature: "",
-    desc: "",
-    nric: "",
-    name: "",
-    svs: "",
-    pes: "",
-    camp: "",
-    rslocation: "",
-    status: "",
-    idate: "",
-    itime: "",
-    ilocation: "",
-    involved: "",
-    actions: "",
-    idetails: "",
-    gsoc: "",
-    formsg: "",
-    ro: "",
-    vo: "",
-  });
+  const { details, setDetails } = useDetails();
 
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
+    setLoading(true);
     e.preventDefault();
-    console.log(details);
+    setDetails({ ...details, submit: true });
+    setLoading(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,11 +20,8 @@ export default function FormContainer() {
   };
 
   return (
-    <div className="bg-white md:p-8 sm:p-6 p-4 rounded-lg shadow-md">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-2 sm:w-[500px] w-[70vw]"
-      >
+    <div className="bg-white md:p-8 sm:p-6 p-4 rounded-lg shadow-md sm:w-[580px] w-[80vw]">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <FormHeading>General Details</FormHeading>
         <label htmlFor="unit">Unit/Sub-Unit/Course</label>
         <input
@@ -69,12 +48,12 @@ export default function FormContainer() {
           onChange={handleChange}
         />
         <FormHeading>Personal Details</FormHeading>
-        <label htmlFor="nric">Full NRIC</label>
+        <label htmlFor="nric">Masked NRIC</label>
         <input
           id="nric"
           type="text"
           name="nric"
-          placeholder="TXXXXXXXA"
+          placeholder="TXXXX123A"
           onChange={handleChange}
         />
         <label htmlFor="name">Rank and Name</label>
@@ -123,7 +102,7 @@ export default function FormContainer() {
           id="status"
           type="text"
           name="status"
-          placeholder="e.g. 2 Day LD, 5 Day RMJ, etc."
+          placeholder="e.g. 2 Day LD (010124-020123)"
           onChange={handleChange}
         />
         <label htmlFor="idate">Date of Incident</label>
@@ -131,7 +110,7 @@ export default function FormContainer() {
           id="idate"
           type="text"
           name="idate"
-          placeholder="DD/MM/YY"
+          placeholder="DDMMYY: 010123"
           onChange={handleChange}
         />
         <label htmlFor="itime">Time of Incident</label>
@@ -139,7 +118,7 @@ export default function FormContainer() {
           id="itime"
           type="text"
           name="itime"
-          placeholder="HH:MM"
+          placeholder="HHMM: 0730"
           onChange={handleChange}
         />
         <label htmlFor="ilocation">Location of Incident</label>
@@ -197,7 +176,7 @@ export default function FormContainer() {
           id="ro"
           type="text"
           name="ro"
-          placeholder="123456789"
+          placeholder="e.g. PS, 3SG XXX, etc."
           onChange={handleChange}
         />
         <label htmlFor="vo">VO</label>
@@ -205,7 +184,7 @@ export default function FormContainer() {
           id="vo"
           type="text"
           name="vo"
-          placeholder="123456789"
+          placeholder="e.g. PWO/PC, etc."
           onChange={handleChange}
         />
         <button
