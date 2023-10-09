@@ -5,7 +5,7 @@ export default function handleFormat(details: DetailsType, type: string) {
 
   const unit = `${bold}${details.unit}${bold}`;
 
-  const natureHeader = `${bold}1) Nature and Type of incident:${bold}`;
+  const natureHeader = `${bold}1) Nature and Type of Incident:${bold}`;
 
   const descHeader = `${bold}2) Brief Description of Incident:${bold}`;
 
@@ -70,7 +70,7 @@ export default function handleFormat(details: DetailsType, type: string) {
   ${details.idetails}
   
   ${formsgHeader}
-  GSoc: ${details.gsoc}
+  GSOC: ${details.gsoc}
   FormSG: ${details.formsg}
   
   ${roHeader}
