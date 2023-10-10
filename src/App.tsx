@@ -10,7 +10,7 @@ export default function App() {
   return (
     <div className="p-4 bg-slate-50">
       <Toaster richColors position="bottom-center" />
-      <div className="flex flex-col gap-10 items-center justify-center p-4">
+      <div className="flex flex-col gap-10 items-center justify-center p-4 pb-10">
         <Header />
         <FormContainer />
         {details.submit && (
