@@ -28,8 +28,8 @@ export default function DetailsArea({ onCopy }: DetailsType) {
       <h4 className="text-base text-slate-800 text-center">
         Your{" "}
         <span className="text-violet-600 font-medium">incident report</span> has
-        been generated. Simply choose your platform, copy and paste this message
-        below and share it straight from below!
+        been generated. Simply choose your platform and copy and paste the
+        message below.
       </h4>
 
       <ul className="w-full flex items-center justify-center gap-x-10 gap-y-4 flex-wrap">
@@ -39,10 +39,10 @@ export default function DetailsArea({ onCopy }: DetailsType) {
               setDetails({ ...details, platform: item.id });
             }}
             key={index}
-            className={`flex flex-row items-center justify-between gap-2 px-4 py-2 rounded-md shadow-md bg-white  duration-200 border-[1px] ${
+            className={`flex flex-row items-center justify-between gap-2 px-4 py-2 rounded-md shadow-sm duration-200 border-[1px] ${
               details.platform === item.id
-                ? "border-violet-600 cursor-default"
-                : "cursor-pointer hover:brightness-95"
+                ? "cursor-default bg-violet-600 text-slate-50"
+                : "cursor-pointer hover:brightness-95 bg-white"
             }`}
           >
             <img src={item.src} alt="" width={25} />
@@ -64,7 +64,7 @@ export default function DetailsArea({ onCopy }: DetailsType) {
         </CopyToClipboard>
       </div>
 
-      <Share text={formatted} />
+      <Share text={formatted} platform={details.platform} />
     </div>
   );
 }
