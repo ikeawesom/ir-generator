@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Onest&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,7 +7,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Onest", sans-serif;
 }
 
 input,
