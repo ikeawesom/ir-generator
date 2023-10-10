@@ -15,7 +15,7 @@ export default function FormContainer() {
     setTimeout(() => {
       setDetails({ ...details, submit: true });
       setLoading(false);
-    }, 1000);
+    }, Math.floor(Math.random() * 2000));
   };
 
   const handleChange = (
@@ -310,10 +310,10 @@ export default function FormContainer() {
         >
           {loading ? (
             <span className="flex flex-row gap-2 items-center justify-center">
-              Generating IR <Spinner />
+              Working <Spinner />
             </span>
           ) : (
-            "Submit"
+            "Generate IR"
           )}
         </button>
       </form>
