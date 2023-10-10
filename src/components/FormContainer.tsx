@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormHeading from "./FormHeading";
 import Spinner from "./Spinner";
 import { useDetails } from "../contexts/DetailsContext";
@@ -38,6 +38,10 @@ export default function FormContainer() {
     temp.splice(index, 1);
     setDetails({ ...details, status: temp });
   };
+
+  useEffect(() => {
+    console.log(details.status);
+  }, [details]);
 
   const handleStatusChange = (
     e: React.ChangeEvent<HTMLInputElement>,
