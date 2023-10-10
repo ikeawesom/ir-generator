@@ -61,7 +61,7 @@ export default function FormContainer() {
           id="unit"
           type="text"
           name="unit"
-          placeholder="For e.g. 40SAR/Stallion, INT-LAS/SCTW/1023 AISCC, etc."
+          placeholder="e.g. 40SAR/Stallion, INT-LAS/SCTW/1023 AISCC, etc."
           onChange={handleChange}
         />
         <label htmlFor="nature">
@@ -240,7 +240,7 @@ export default function FormContainer() {
           id="involved"
           type="text"
           name="involved"
-          placeholder="For e.g. 40SAR/Stallion, INT-LAS/SCTW/1023 AISCC, etc."
+          placeholder="e.g. 40SAR/Stallion, INT-LAS/SCTW/1023 AISCC, etc."
           onChange={handleChange}
         />
         <label htmlFor="actions">Follow Up Actions</label>
