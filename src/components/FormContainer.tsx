@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FormHeading from "./FormHeading";
 import Spinner from "./Spinner";
 import { useDetails } from "../contexts/DetailsContext";
