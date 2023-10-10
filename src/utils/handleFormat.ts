@@ -2,8 +2,8 @@ import { DetailsType } from "../contexts/DetailsContext";
 
 function handleStatusFormat(arr: string[]) {
   var result = "";
-  arr.forEach((item) => (result += item + ", "));
-  return result.trimEnd().substring(0, result.length - 2);
+  arr.forEach((item) => (result += item + "\n"));
+  return result.trimEnd();
 }
 
 export default function handleFormat(details: DetailsType, type: string) {
@@ -43,46 +43,46 @@ export default function handleFormat(details: DetailsType, type: string) {
 
   const result = `${unit}
   
-  ${natureHeader}
-  ${details.nature}
-  
-  ${descHeader}
-  ${details.desc}
-  
-  ${otherHeader}
-  ${nric}
-  ${name}
-  ${svs}
-  ${pes}
-  ${camp}
-  ${rslocation}
-  
-  ${statusHeader}
-  ${handleStatusFormat(details.status)}
-  
-  ${dateTimeHeader}
-  ${details.idate} ${details.itime}
-  
-  ${locationHeader}
-  ${details.ilocation}
-  
-  ${unitInvolvedHeader}
-  ${details.involved}
+${natureHeader}
+${details.nature}
 
-  ${actionHeader}
-  ${details.actions === "" ? "NIL" : details.actions}
+${descHeader}
+${details.desc}
 
-  ${civiInvolvedHeader}
-  ${details.idetails === "" ? "NIL" : details.idetails}
-  
-  ${formsgHeader}
-  GSOC: ${details.gsoc === "" ? "NIL" : details.gsoc}
-  FormSG: ${details.formsg === "" ? "NIL" : details.formsg}
-  
-  ${roHeader}
-  ${details.ro}
-  
-  ${voHeader}
-  ${details.vo}`;
+${otherHeader}
+${nric}
+${name}
+${svs}
+${pes}
+${camp}
+${rslocation}
+
+${statusHeader}
+${handleStatusFormat(details.status)}
+
+${dateTimeHeader}
+${details.idate} ${details.itime}
+
+${locationHeader}
+${details.ilocation}
+
+${unitInvolvedHeader}
+${details.involved}
+
+${actionHeader}
+${details.actions === "" ? "NIL" : details.actions}
+
+${civiInvolvedHeader}
+${details.idetails === "" ? "NIL" : details.idetails}
+
+${formsgHeader}
+GSOC: ${details.gsoc === "" ? "NIL" : details.gsoc}
+FormSG: ${details.formsg === "" ? "NIL" : details.formsg}
+
+${roHeader}
+${details.ro}
+
+${voHeader}
+${details.vo}`;
   return result;
 }
