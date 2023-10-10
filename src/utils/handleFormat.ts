@@ -1,6 +1,6 @@
 import { DetailsType } from "../contexts/DetailsContext";
 
-function handleStatusFormat(arr: string[]) {
+function handleOptionsFormat(arr: string[]) {
   if (arr.length === 0) return "NIL";
   var result = "";
   arr.forEach((item) => (result += item + "\n"));
@@ -59,7 +59,7 @@ ${camp}
 ${rslocation}
 
 ${statusHeader}
-${handleStatusFormat(details.status)}
+${handleOptionsFormat(details.status)}
 
 ${dateTimeHeader}
 ${details.idate} ${details.itime}
@@ -74,7 +74,7 @@ ${actionHeader}
 ${details.actions === "" ? "NIL" : details.actions}
 
 ${civiInvolvedHeader}
-${details.idetails === "" ? "NIL" : details.idetails}
+${handleOptionsFormat(details.idetails)}
 
 ${formsgHeader}
 GSOC: ${details.gsoc === "" ? "NIL" : details.gsoc}

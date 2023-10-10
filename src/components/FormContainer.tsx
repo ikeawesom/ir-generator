@@ -48,6 +48,27 @@ export default function FormContainer() {
     setDetails({ ...details, status: temp });
   };
 
+  const handleContactAdd = () => {
+    var temp = details.idetails;
+    temp.push("");
+    setDetails({ ...details, idetails: temp });
+  };
+
+  const handleContactRemove = (index: number) => {
+    var temp = details.idetails;
+    temp.splice(index, 1);
+    setDetails({ ...details, idetails: temp });
+  };
+
+  const handleContactChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    var temp = details.idetails;
+    temp[index] = e.target.value;
+    setDetails({ ...details, idetails: temp });
+  };
+
   return (
     <div className="bg-white md:p-8 sm:p-6 p-4 rounded-lg shadow-md sm:w-[580px] w-[85vw]">
       <p className="text-red-500 text-sm text-start mb-4">*Required fields</p>
@@ -251,14 +272,50 @@ export default function FormContainer() {
           placeholder="e.g. Continue applying XX medication on wound, etc."
           onChange={handleChange}
         />
-        <label htmlFor="idetails">Details of Civilian Involved</label>
-        <input
+        <FormHeading
+          onClick={handleContactAdd}
+          buttonContent="Add"
+          buttonClass="bg-violet-600 text-slate-50 px-4 text-sm py-1 hover:opacity-80 duration-200 rounded-md"
+        >
+          Civilians Involved
+        </FormHeading>
+        {details.idetails.length === 0 ? (
+          <div className="w-full h-[80px] grid place-items-center bg-slate-50 rounded-md">
+            <p className="text-slate-400 text-sm">No Personnel Added</p>
+          </div>
+        ) : (
+          details.idetails.map((item, index) => (
+            <div
+              className="flex gap-3 items-center justify-between w-full"
+              key={index}
+            >
+              <input
+                required
+                id="idetails"
+                type="text"
+                name="idetails"
+                value={item}
+                placeholder="e.g. Mother: 91234567, etc."
+                onChange={(e) => handleContactChange(e, index)}
+                className="m-0 w-full"
+              />
+              <button
+                type="button"
+                onClick={() => handleContactRemove(index)}
+                className="bg-red-400 text-slate-50 w-[100px] px-2 py-1 rounded-md hover:brightness-90 duration-200"
+              >
+                Remove
+              </button>
+            </div>
+          ))
+        )}
+        {/* <input
           id="idetails"
           type="text"
           name="idetails"
           placeholder="Phone number, email address, etc."
           onChange={handleChange}
-        />
+        /> */}
         <FormHeading>Others</FormHeading>
         <label htmlFor="gsoc">Date & Time Reported To GSOC (DDMMYY HHMM)</label>
         <input

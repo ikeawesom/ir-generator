@@ -18,7 +18,7 @@ export type DetailsType = {
   ilocation: string;
   involved: string;
   actions: string;
-  idetails: string;
+  idetails: string[];
   gsoc: string;
   formsg: string;
   ro: string;
@@ -55,7 +55,7 @@ export function DetailsProvider({ children }: ProviderTypes) {
     ilocation: "",
     involved: "",
     actions: "",
-    idetails: "",
+    idetails: [],
     gsoc: "",
     formsg: "",
     ro: "",
