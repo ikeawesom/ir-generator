@@ -26,6 +26,28 @@ export default function FormContainer() {
     setDetails({ ...details, [e.target.name]: e.target.value });
   };
 
+  const handleStatusAdd = () => {
+    var temp = details.status;
+    temp.push("");
+    setDetails({ ...details, status: temp });
+  };
+
+  const handleStatusRemove = (index: number) => {
+    var temp = details.status;
+    console.log(index);
+    temp.splice(index, 1);
+    setDetails({ ...details, status: temp });
+  };
+
+  const handleStatusChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    var temp = details.status;
+    temp[index] = e.target.value;
+    setDetails({ ...details, status: temp });
+  };
+
   return (
     <div className="bg-white md:p-8 sm:p-6 p-4 rounded-lg shadow-md sm:w-[580px] w-[85vw]">
       <p className="text-red-500 text-sm text-start mb-4">*Required fields</p>
@@ -131,18 +153,52 @@ export default function FormContainer() {
           placeholder="e.g. Changi General Hospital"
           onChange={handleChange}
         />
-        <FormHeading>Incident Details</FormHeading>
-        <label htmlFor="status">
-          Current Status<span className="text-red-500">*</span>
-        </label>
-        <input
+        <FormHeading
+          onClick={handleStatusAdd}
+          buttonContent="Add"
+          buttonClass="bg-violet-600 text-slate-50 px-4 text-sm py-1 hover:opacity-80 duration-200 rounded-md"
+        >
+          Current Status
+        </FormHeading>
+        {details.status.length === 0 ? (
+          <div className="w-full h-[80px] grid place-items-center bg-slate-50 rounded-md">
+            <p className="text-slate-400 text-sm">No Status Added</p>
+          </div>
+        ) : (
+          details.status.map((item, index) => (
+            <div
+              className="flex gap-3 items-center justify-between"
+              key={index}
+            >
+              <input
+                required
+                id="status"
+                type="text"
+                name="status"
+                value={item}
+                placeholder="e.g. 2 Day LD (010124-020123)"
+                onChange={(e) => handleStatusChange(e, index)}
+                className="flex-1 m-0"
+              />
+              <button
+                type="button"
+                onClick={() => handleStatusRemove(index)}
+                className="bg-red-400 text-slate-50 px-2 py-1 rounded-md hover:brightness-90 duration-200"
+              >
+                Remove
+              </button>
+            </div>
+          ))
+        )}
+        {/* <input
           required
           id="status"
           type="text"
           name="status"
           placeholder="e.g. 2 Day LD (010124-020123)"
           onChange={handleChange}
-        />
+        /> */}
+        <FormHeading>Incident Details</FormHeading>
         <label htmlFor="idate">
           Date of Incident<span className="text-red-500">*</span>
         </label>
