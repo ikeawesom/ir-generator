@@ -3,6 +3,7 @@ import { useDetails } from "../contexts/DetailsContext";
 import handleFormat from "../utils/handleFormat";
 import Clipboard from "./Clipboard";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import Share from "./Share";
 
 type DetailsType = {
   onCopy: () => void;
@@ -15,7 +16,7 @@ const PLATFORMS = [
 
 export default function DetailsArea({ onCopy }: DetailsType) {
   const { details, setDetails } = useDetails();
-  const [formated, setFormatted] = useState("");
+  const [formatted, setFormatted] = useState("");
 
   useEffect(() => {
     const data = handleFormat(details, details.platform);
@@ -27,8 +28,8 @@ export default function DetailsArea({ onCopy }: DetailsType) {
       <h4 className="text-base text-slate-800 text-center">
         Your{" "}
         <span className="text-violet-600 font-medium">incident report</span> has
-        been generated. Simply copy and paste this message below and send it
-        straight!
+        been generated. Simply choose your platform, copy and paste this message
+        below and share it straight from below!
       </h4>
 
       <ul className="w-full flex items-center justify-center gap-x-10 gap-y-4 flex-wrap">
@@ -53,15 +54,17 @@ export default function DetailsArea({ onCopy }: DetailsType) {
       <div className="relative">
         <textarea
           className="bg-white rounded-lg shadow-md resize-none w-full md:p-6 p-4 h-[75vh] details-area"
-          defaultValue={formated}
+          defaultValue={formatted}
           readOnly
         />
-        <CopyToClipboard text={formated} onCopy={onCopy}>
+        <CopyToClipboard text={formatted} onCopy={onCopy}>
           <div className="absolute bottom-5 right-5 shadow-md rounded-full bg-violet-600 p-4 cursor-pointer hover:opacity-80 duration-200">
             <Clipboard />
           </div>
         </CopyToClipboard>
       </div>
+
+      <Share text={formatted} />
     </div>
   );
 }
