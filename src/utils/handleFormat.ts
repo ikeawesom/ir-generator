@@ -33,7 +33,7 @@ export default function handleFormat(details: DetailsType, type: string) {
 
   const actionHeader = `${bold}7) Follow Up Actions:${bold}`;
 
-  const civiInvolvedHeader = `${bold}8) Details of Civilian Involved, If Any:${bold}`;
+  const civiInvolvedHeader = `${bold}8) Details of Civilian Involved, if any:${bold}`;
 
   const formsgHeader = `${bold}9) Date & Time Reported To:${bold}`;
 
