@@ -12,7 +12,7 @@ export type DetailsType = {
   pes: string;
   camp: string;
   rslocation: string;
-  status: string;
+  status: string[];
   idate: string;
   itime: string;
   ilocation: string;
@@ -49,7 +49,7 @@ export function DetailsProvider({ children }: ProviderTypes) {
     pes: "",
     camp: "",
     rslocation: "",
-    status: "",
+    status: [],
     idate: "",
     itime: "",
     ilocation: "",

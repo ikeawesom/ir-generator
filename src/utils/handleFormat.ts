@@ -1,5 +1,11 @@
 import { DetailsType } from "../contexts/DetailsContext";
 
+function handleStatusFormat(arr: string[]) {
+  var result = "";
+  arr.forEach((item) => (result += item + ", "));
+  return result.trimEnd().substring(0, result.length - 2);
+}
+
 export default function handleFormat(details: DetailsType, type: string) {
   const bold = type === "ws" ? "*" : "**";
 
@@ -52,7 +58,7 @@ export default function handleFormat(details: DetailsType, type: string) {
   ${rslocation}
   
   ${statusHeader}
-  ${details.status}
+  ${handleStatusFormat(details.status)}
   
   ${dateTimeHeader}
   ${details.idate} ${details.itime}
