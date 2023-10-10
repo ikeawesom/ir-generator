@@ -167,7 +167,7 @@ export default function FormContainer() {
         ) : (
           details.status.map((item, index) => (
             <div
-              className="flex gap-3 items-center justify-between"
+              className="flex gap-3 items-center justify-between w-full"
               key={index}
             >
               <input
@@ -178,12 +178,12 @@ export default function FormContainer() {
                 value={item}
                 placeholder="e.g. 2 Day LD (010124-020123)"
                 onChange={(e) => handleStatusChange(e, index)}
-                className="flex-1 m-0"
+                className="m-0 w-full"
               />
               <button
                 type="button"
                 onClick={() => handleStatusRemove(index)}
-                className="bg-red-400 text-slate-50 px-2 py-1 rounded-md hover:brightness-90 duration-200"
+                className="bg-red-400 text-slate-50 w-[100px] px-2 py-1 rounded-md hover:brightness-90 duration-200"
               >
                 Remove
               </button>
