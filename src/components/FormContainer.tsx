@@ -2,6 +2,7 @@ import { useState } from "react";
 import FormHeading from "./FormHeading";
 import Spinner from "./Spinner";
 import { useDetails } from "../contexts/DetailsContext";
+import useInteractive from "../utils/useInteractive";
 
 export default function FormContainer() {
   const { details, setDetails } = useDetails();
@@ -26,48 +27,14 @@ export default function FormContainer() {
     setDetails({ ...details, [e.target.name]: e.target.value });
   };
 
-  const handleStatusAdd = () => {
-    var temp = details.status;
-    temp.push("");
-    setDetails({ ...details, status: temp });
-  };
-
-  const handleStatusRemove = (index: number) => {
-    var temp = details.status;
-    console.log(index);
-    temp.splice(index, 1);
-    setDetails({ ...details, status: temp });
-  };
-
-  const handleStatusChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    var temp = details.status;
-    temp[index] = e.target.value;
-    setDetails({ ...details, status: temp });
-  };
-
-  const handleContactAdd = () => {
-    var temp = details.idetails;
-    temp.push("");
-    setDetails({ ...details, idetails: temp });
-  };
-
-  const handleContactRemove = (index: number) => {
-    var temp = details.idetails;
-    temp.splice(index, 1);
-    setDetails({ ...details, idetails: temp });
-  };
-
-  const handleContactChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    var temp = details.idetails;
-    temp[index] = e.target.value;
-    setDetails({ ...details, idetails: temp });
-  };
+  const {
+    handleStatusAdd,
+    handleStatusChange,
+    handleStatusRemove,
+    handleContactAdd,
+    handleContactRemove,
+    handleContactChange,
+  } = useInteractive();
 
   return (
     <div className="bg-white md:p-8 sm:p-6 p-4 rounded-lg shadow-md sm:w-[580px] w-[85vw]">
