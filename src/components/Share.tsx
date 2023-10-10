@@ -14,14 +14,14 @@ export default function Share({ text, platform }: ShareType) {
         or share it <span className="text-violet-600">straight from here</span>.
       </p>
       {platform === "ws" ? (
-        <WhatsappShareButton url={text} title="IR Generator">
+        <WhatsappShareButton url={text} title="">
           <span className={CLASSNAME}>
             <img src="whatsapp.svg" alt="" width={30} />
             <p>Share to WhatsApp</p>
           </span>
         </WhatsappShareButton>
       ) : (
-        <TelegramShareButton url={text} title="IR Generator">
+        <TelegramShareButton url={text} title="">
           <span className={CLASSNAME}>
             <img src="telegram.svg" alt="" width={30} />
             <p>Share to Telegram</p>
