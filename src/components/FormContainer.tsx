@@ -200,25 +200,25 @@ export default function FormContainer() {
         /> */}
         <FormHeading>Incident Details</FormHeading>
         <label htmlFor="idate">
-          Date of Incident<span className="text-red-500">*</span>
+          Date of Incident (DDMMYY)<span className="text-red-500">*</span>
         </label>
         <input
           required
           id="idate"
           type="text"
           name="idate"
-          placeholder="DDMMYY: 010123"
+          placeholder="e.g. 010123, 251223, etc."
           onChange={handleChange}
         />
         <label htmlFor="itime">
-          Time of Incident<span className="text-red-500">*</span>
+          Time of Incident (HHMM)<span className="text-red-500">*</span>
         </label>
         <input
           required
           id="itime"
           type="text"
           name="itime"
-          placeholder="HHMM: 0730"
+          placeholder="e.g. 0730, 2100, etc."
           onChange={handleChange}
         />
         <label htmlFor="ilocation">
@@ -260,20 +260,22 @@ export default function FormContainer() {
           onChange={handleChange}
         />
         <FormHeading>Others</FormHeading>
-        <label htmlFor="gsoc">Date & Time Reported To GSOC</label>
+        <label htmlFor="gsoc">Date & Time Reported To GSOC (DDMMYY HHMM)</label>
         <input
           id="gsoc"
           type="text"
           name="gsoc"
-          placeholder="DD:MM:YY HH:MM"
+          placeholder="e.g. 010123 1200, 020223 0900, etc."
           onChange={handleChange}
         />
-        <label htmlFor="formsg">Date & Time Reported To FormSG</label>
+        <label htmlFor="formsg">
+          Date & Time Reported To FormSG (DDMMYY HHMM)
+        </label>
         <input
           id="formsg"
           type="text"
           name="formsg"
-          placeholder="DD:MM:YY HH:MM"
+          placeholder="e.g. 010123 1200, 020223 0900, etc."
           onChange={handleChange}
         />
         <FormHeading>Signing Off</FormHeading>
