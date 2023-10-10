@@ -1,6 +1,7 @@
 import { DetailsType } from "../contexts/DetailsContext";
 
 function handleStatusFormat(arr: string[]) {
+  if (arr.length === 0) return "NIL";
   var result = "";
   arr.forEach((item) => (result += item + "\n"));
   return result.trimEnd();
