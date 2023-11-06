@@ -91,11 +91,11 @@ export default function DefaultForm() {
       />
       <div className="w-full flex flex-col items-start justify-center">
         <label htmlFor="desc">
-          Description of Incident<span className="text-red-500">*</span>
+          Brief Description of Incident<span className="text-red-500">*</span>
         </label>
         <p className="text-slate-400 text-sm">
-          Please include specific details. (e.g. 5W1H of incident, reporting
-          sick location, what happened at clinic, etc.)
+          Please include details like 5W1H of incident, reporting sick location,
+          what happened at clinic, etc.
         </p>
       </div>
       <textarea
@@ -103,7 +103,7 @@ export default function DefaultForm() {
         id="desc"
         className="h-[150px] field resize-none"
         name="desc"
-        placeholder="e.g. On 01 Nov 2023 at about 2215hrs, REC JOHN TAN reported sick for fever at Changi General Hospital after he took his temperature which was 39.5 degrees. He took a blood test to test for dengue there."
+        placeholder="e.g. On 01 Nov 2023 at about 2215hrs, REC JOHN TAN reported sick for fever at Changi General Hospital after he took his temperature which was 39.5 degrees. At the hospital, he took a blood test to test for dengue which was later confirmed."
         onChange={handleChange}
       />
       <FormHeading>Personal Details</FormHeading>
@@ -176,7 +176,9 @@ export default function DefaultForm() {
         onChange={handleChange}
       />
 
-      <label htmlFor="actions">Follow Up Actions</label>
+      <label htmlFor="actions">
+        Follow Up Actions<span className="text-red-500">*</span>
+      </label>
       <input
         id="actions"
         required
@@ -226,7 +228,7 @@ export default function DefaultForm() {
 
       <FormHeading>Reporting</FormHeading>
       <label htmlFor="gsoc">
-        Date/Time of Verval Report to GSOC (DDMMYY/HHMM)
+        Date/Time of Verbal Report to GSOC (DDMMYY/HHMM)
       </label>
       <input
         id="gsoc"
