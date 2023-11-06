@@ -1,3 +1,5 @@
+import { twMerge } from "tailwind-merge";
+
 type Props = {
   children?: React.ReactNode;
   onClick?: () => void;
@@ -11,16 +13,18 @@ export default function FormHeading({
   buttonClass,
 }: Props) {
   return (
-    <div className="mb-2 flex flex-col gap-1">
+    <div className={twMerge("flex flex-col gap-1", !onClick && "mb-2")}>
       <div className="flex items-center justify-between">
-        <h1 className="font-bold text-lg">{children}</h1>
+        <h1 className={twMerge("font-bold", !onClick && "text-lg")}>
+          {children}
+        </h1>
         {onClick && buttonContent && (
           <button type="button" onClick={onClick} className={buttonClass}>
             {buttonContent}
           </button>
         )}
       </div>
-      <hr />
+      {!onClick && <hr />}
     </div>
   );
 }

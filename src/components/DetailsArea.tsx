@@ -4,9 +4,13 @@ import handleFormat from "../utils/handleFormat";
 import Clipboard from "./Clipboard";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Share from "./Share";
+import { useTekongDetails } from "../contexts/TekongContext";
+import handleTekongFormat from "../utils/handleTekongFormat";
+import { twMerge } from "tailwind-merge";
 
 type DetailsType = {
   onCopy: () => void;
+  option: string;
 };
 
 const PLATFORMS = [
@@ -14,14 +18,28 @@ const PLATFORMS = [
   { title: "Telegram", src: "telegram.svg", id: "tele" },
 ];
 
-export default function DetailsArea({ onCopy }: DetailsType) {
+export default function DetailsArea({ onCopy, option }: DetailsType) {
   const { details, setDetails } = useDetails();
+  const { tekongDetails, setTekongDetails } = useTekongDetails();
   const [formatted, setFormatted] = useState("");
 
   useEffect(() => {
-    const data = handleFormat(details, details.platform);
-    setFormatted(data);
-  }, [details]);
+    if (option === "keat-hong-camp") {
+      const data = handleFormat(details, details.platform);
+      setFormatted(data);
+    } else if (option === "tekong") {
+      const data = handleTekongFormat(tekongDetails, tekongDetails.platform);
+      setFormatted(data);
+    }
+  }, [option, details, tekongDetails]);
+
+  const handlePlatform = (id: string) => {
+    if (option === "tekong") {
+      setTekongDetails({ ...tekongDetails, platform: id });
+    } else {
+      setDetails({ ...details, platform: id });
+    }
+  };
 
   return (
     <div className="sm:w-[580px] w-[80vw] flex flex-col gap-6">
@@ -35,15 +53,18 @@ export default function DetailsArea({ onCopy }: DetailsType) {
       <ul className="w-full flex items-center justify-center gap-x-10 gap-y-4 flex-wrap">
         {PLATFORMS.map((item, index) => (
           <li
-            onClick={() => {
-              setDetails({ ...details, platform: item.id });
-            }}
+            onClick={() => handlePlatform(item.id)}
             key={index}
-            className={`flex flex-row items-center justify-between gap-2 px-4 py-2 rounded-md shadow-sm duration-200 border-[1px] ${
-              details.platform === item.id
+            className={twMerge(
+              "flex flex-row items-center justify-between gap-2 px-4 py-2 rounded-md shadow-sm duration-200 border-[1px]",
+              option === "tekong"
+                ? tekongDetails.platform === item.id
+                  ? "cursor-default bg-violet-600 text-slate-50"
+                  : "cursor-pointer hover:brightness-95 bg-white"
+                : details.platform === item.id
                 ? "cursor-default bg-violet-600 text-slate-50"
                 : "cursor-pointer hover:brightness-95 bg-white"
-            }`}
+            )}
           >
             <img src={item.src} alt="" width={25} />
             <h4>{item.title}</h4>
@@ -64,7 +85,12 @@ export default function DetailsArea({ onCopy }: DetailsType) {
         </CopyToClipboard>
       </div>
 
-      <Share text={formatted} platform={details.platform} />
+      <Share
+        text={formatted}
+        platform={
+          option === "tekong" ? tekongDetails.platform : details.platform
+        }
+      />
     </div>
   );
 }

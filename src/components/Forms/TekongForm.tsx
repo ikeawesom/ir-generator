@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import FormHeading from "../FormHeading";
 import Spinner from "../Spinner";
-import { useDetails } from "../../contexts/DetailsContext";
-import useInteractive from "../../utils/useInteractive";
+import { useTekongDetails } from "../../contexts/TekongContext";
+import useTekongInteractive from "../../utils/useTekongInteractive";
 
-export default function DefaultForm() {
-  const { details, setDetails } = useDetails();
-
+export default function TekongForm() {
+  const { tekongDetails, setTekongDetails } = useTekongDetails();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     setLoading(true);
-    setDetails({ ...details, submit: false });
+    setTekongDetails({ ...tekongDetails, submit: false });
     e.preventDefault();
     setTimeout(() => {
-      setDetails({ ...details, submit: true });
+      setTekongDetails({ ...tekongDetails, submit: true });
       setLoading(false);
     }, Math.floor(Math.random() * 2000));
   };
@@ -24,26 +23,92 @@ export default function DefaultForm() {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    setDetails({ ...details, [e.target.name]: e.target.value });
+    setTekongDetails({ ...tekongDetails, [e.target.name]: e.target.value });
   };
 
-  const { handleStatusAdd, handleStatusChange, handleStatusRemove } =
-    useInteractive();
+  const {
+    handleStatusAdd,
+    handleStatusChange,
+    handleStatusRemove,
+    handleStakeAdd,
+    handleStakeChange,
+    handleStakeRemove,
+  } = useTekongInteractive();
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-      <FormHeading>General Details</FormHeading>
-      <label htmlFor="unit">
-        Unit<span className="text-red-500">*</span>
+      <FormHeading>Personal Details</FormHeading>
+      <label htmlFor="involved">
+        Unit and Company<span className="text-red-500">*</span>
       </label>
       <input
         required
-        id="unit"
+        id="involved"
         type="text"
-        name="unit"
-        placeholder="e.g. 40SAR, 41SAR"
+        name="involved"
+        placeholder="e.g. BMTC3/40 SAR/BMT Coy A, etc."
         onChange={handleChange}
       />
+      <label htmlFor="name">
+        Rank and Name<span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="name"
+        type="text"
+        name="name"
+        placeholder="e.g. REC JOHN TAN JIA WEI"
+        onChange={handleChange}
+      />
+      <label htmlFor="nric">
+        Full NRIC<span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="nric"
+        type="text"
+        name="nric"
+        placeholder="T1234568A"
+        onChange={handleChange}
+      />
+
+      <label htmlFor="svs">
+        Service Status<span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="svs"
+        type="text"
+        name="svs"
+        placeholder="NSF, REG, etc."
+        onChange={handleChange}
+      />
+      <label htmlFor="fourd">
+        4D Number<span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="fourd"
+        type="number"
+        name="fourd"
+        placeholder="1111"
+        maxLength={4}
+        minLength={4}
+        onChange={handleChange}
+      />
+      <label htmlFor="pes">
+        PES Status<span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="pes"
+        type="text"
+        name="pes"
+        placeholder="A, B1, B2, etc."
+        onChange={handleChange}
+      />
+
+      <FormHeading>Incident Details</FormHeading>
       <label htmlFor="nature">
         Nature of Incident<span className="text-red-500">*</span>
       </label>
@@ -62,8 +127,10 @@ export default function DefaultForm() {
       <input
         required
         id="idate"
-        type="text"
+        type="number"
         name="idate"
+        maxLength={6}
+        minLength={6}
         placeholder="e.g. 010123, 251223, etc."
         onChange={handleChange}
       />
@@ -73,7 +140,9 @@ export default function DefaultForm() {
       <input
         required
         id="itime"
-        type="text"
+        type="number"
+        maxLength={4}
+        minLength={4}
         name="itime"
         placeholder="e.g. 0730, 2100, etc."
         onChange={handleChange}
@@ -94,8 +163,8 @@ export default function DefaultForm() {
           Brief Description of Incident<span className="text-red-500">*</span>
         </label>
         <p className="text-slate-400 text-sm">
-          Please include details like 5W1H of incident, reporting sick location,
-          what happened at clinic, etc.
+          Please include details like the 5W1H of incident, reporting sick
+          location, what happened at the clinic, etc.
         </p>
       </div>
       <textarea
@@ -104,64 +173,6 @@ export default function DefaultForm() {
         className="h-[150px] field resize-none"
         name="desc"
         placeholder="e.g. On 01 Nov 2023 at about 2215hrs, REC JOHN TAN reported sick for fever at Changi General Hospital after he took his temperature which was 39.5 degrees. At the hospital, he took a blood test to test for dengue which was later confirmed."
-        onChange={handleChange}
-      />
-      <FormHeading>Personal Details</FormHeading>
-      <label htmlFor="nric">
-        Masked NRIC<span className="text-red-500">*</span>
-      </label>
-      <input
-        required
-        id="nric"
-        type="text"
-        name="nric"
-        placeholder="TXXXX123A"
-        onChange={handleChange}
-      />
-      <label htmlFor="name">
-        Rank and Name<span className="text-red-500">*</span>
-      </label>
-      <input
-        required
-        id="name"
-        type="text"
-        name="name"
-        placeholder="e.g. REC JOHN TAN JIA WEI"
-        onChange={handleChange}
-      />
-      <label htmlFor="svs">
-        Service Status<span className="text-red-500">*</span>
-      </label>
-      <input
-        required
-        id="svs"
-        type="text"
-        name="svs"
-        placeholder="NSF, REG, etc."
-        onChange={handleChange}
-      />
-      <label htmlFor="pes">
-        PES Status<span className="text-red-500">*</span>
-      </label>
-      <input
-        required
-        id="pes"
-        type="text"
-        name="pes"
-        placeholder="A, B1, B2, etc."
-        onChange={handleChange}
-      />
-
-      <FormHeading>Incident Details</FormHeading>
-      <label htmlFor="involved">
-        Unit and Company<span className="text-red-500">*</span>
-      </label>
-      <input
-        required
-        id="involved"
-        type="text"
-        name="involved"
-        placeholder="e.g. 40SAR Stallion Scout PL, 40SAR Archer PL 2, etc."
         onChange={handleChange}
       />
       <label htmlFor="injury">
@@ -177,7 +188,7 @@ export default function DefaultForm() {
       />
 
       <label htmlFor="actions">
-        Follow Up Actions<span className="text-red-500">*</span>
+        Follow Up Updates<span className="text-red-500">*</span>
       </label>
       <input
         id="actions"
@@ -187,6 +198,45 @@ export default function DefaultForm() {
         placeholder="e.g. Continue applying XX medication on wound, etc."
         onChange={handleChange}
       />
+      <FormHeading>Reporting</FormHeading>
+
+      <FormHeading
+        onClick={handleStakeAdd}
+        buttonContent="Add"
+        buttonClass="bg-violet-600 text-slate-50 px-4 text-sm py-1 hover:opacity-80 duration-200 rounded-md"
+      >
+        Stakeholders
+      </FormHeading>
+      {tekongDetails.stake.length === 0 ? (
+        <div className="w-full h-[80px] grid place-items-center bg-slate-50 rounded-md mb-2">
+          <p className="text-slate-400 text-sm">No Stakeholders Added</p>
+        </div>
+      ) : (
+        tekongDetails.stake.map((item, index) => (
+          <div
+            className="flex gap-3 items-center justify-between w-full mb-2"
+            key={index}
+          >
+            <input
+              required
+              id="stake"
+              type="text"
+              name="stake"
+              value={item}
+              placeholder="e.g. CPT JOHN TAN (OC), MSG ALEX LOH (CSM)"
+              onChange={(e) => handleStakeChange(e, index)}
+              className="m-0 w-full"
+            />
+            <button
+              type="button"
+              onClick={() => handleStakeRemove(index)}
+              className="bg-red-400 text-slate-50 w-[100px] px-2 py-1 rounded-md hover:brightness-90 duration-200"
+            >
+              Remove
+            </button>
+          </div>
+        ))
+      )}
 
       <FormHeading
         onClick={handleStatusAdd}
@@ -195,12 +245,12 @@ export default function DefaultForm() {
       >
         Status Received
       </FormHeading>
-      {details.status.length === 0 ? (
+      {tekongDetails.status.length === 0 ? (
         <div className="w-full h-[80px] grid place-items-center bg-slate-50 rounded-md mb-2">
           <p className="text-slate-400 text-sm">No Status Added</p>
         </div>
       ) : (
-        details.status.map((item, index) => (
+        tekongDetails.status.map((item, index) => (
           <div
             className="flex gap-3 items-center justify-between w-full mb-2"
             key={index}
@@ -225,8 +275,30 @@ export default function DefaultForm() {
           </div>
         ))
       )}
-
-      <FormHeading>Reporting</FormHeading>
+      <label htmlFor="nok">
+        Name and Relationship of Next of Kin (NOK)
+        <span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="nok"
+        type="text"
+        name="nok"
+        placeholder="e.g. John Tan (Father), Mary Lim (Mother), etc."
+        onChange={handleChange}
+      />
+      <label htmlFor="nokdate">
+        Date/Time Reported to NOK (DDMMYY/HHMM)
+        <span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="nokdate"
+        type="text"
+        name="nokdate"
+        placeholder="e.g. 010123 1200, 020223 0900, etc."
+        onChange={handleChange}
+      />
       <label htmlFor="gsoc">
         Date/Time of Verbal Report to GSOC (DDMMYY/HHMM)
       </label>
@@ -246,9 +318,7 @@ export default function DefaultForm() {
         onChange={handleChange}
       />
 
-      <label htmlFor="arm">
-        Date/Time Reported to 3 DIV/HQ Armour (DDMMYY/HHMM)
-      </label>
+      <label htmlFor="arm">Date/Time Reported to 8SAB CDOO (DDMMYY/HHMM)</label>
       <input
         id="arm"
         type="text"

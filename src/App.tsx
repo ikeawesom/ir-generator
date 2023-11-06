@@ -6,15 +6,20 @@ import { useDetails } from "./contexts/DetailsContext";
 import { Toaster, toast } from "sonner";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useTekongDetails } from "./contexts/TekongContext";
+
+const OPTIONS = ["tekong", "keat-hong-camp"];
 
 export default function App() {
   const { details } = useDetails();
+  const { tekongDetails } = useTekongDetails();
   let [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const option = searchParams.get("option");
-    if (!option) setSearchParams({ option: "tekong" });
-  }, [searchParams]);
+    if (!option || !OPTIONS.includes(option))
+      setSearchParams({ option: "tekong" });
+  }, [searchParams, setSearchParams]);
 
   const paramTekong = () => {
     setSearchParams({ option: "tekong" });
@@ -25,6 +30,7 @@ export default function App() {
   };
 
   const option = searchParams.get("option") as string;
+  const submitted = details.submit || tekongDetails.submit;
 
   return (
     <div className="p-4 bg-slate-50">
@@ -63,8 +69,11 @@ export default function App() {
           </div>
           <FormContainer option={option} />
         </div>
-        {details.submit && (
-          <DetailsArea onCopy={() => toast.success("Copied to clipboard!")} />
+        {submitted && (
+          <DetailsArea
+            option={option}
+            onCopy={() => toast.success("Copied to clipboard!")}
+          />
         )}
       </div>
       <p className="text-center text-slate-400">Created by Ike Lim.</p>
