@@ -14,76 +14,67 @@ export default function handleFormat(details: DetailsType, type: string) {
 
   const natureHeader = `${bold}1) Nature and Type of Incident:${bold}`;
 
-  const descHeader = `${bold}2) Brief Description of Incident:${bold}`;
+  const dateTimeHeader = `${bold}2) Date & Time of Incident:${bold}`;
 
-  const otherHeader = `${bold}Other Details:${bold}`;
+  const svcmenHeader = `${bold}3) Serviceman Involved:${bold}`;
   const nric = `NRIC: ${details.nric}`;
   const name = `R/Name: ${details.name}`;
   const svs = `SVS: ${details.svs}`;
   const pes = `PES: ${details.pes}`;
-  const camp = `Resident Camp: ${details.camp}`;
-  const rslocation = `Report Sick Location: ${details.rslocation}`;
+  const svcmen = `${name}, ${nric}, PES ${pes}, ${svs}`;
 
-  const statusHeader = `${bold}3) Current Status:${bold}`;
-
-  const dateTimeHeader = `${bold}4) Date & Time of Incident:${bold}`;
+  const unitInvolvedHeader = `${bold}4) Serviceman Unit and Company:${bold}`;
 
   const locationHeader = `${bold}5) Location of Incident:${bold}`;
 
-  const unitInvolvedHeader = `${bold}6) Unit Involved/Affected:${bold}`;
+  const descHeader = `${bold}6) Brief Description of Incident:${bold}`;
 
-  const actionHeader = `${bold}7) Follow Up Actions:${bold}`;
+  const injuryHeader = `${bold}7) Injury/Damage:${bold}`;
 
-  const civiInvolvedHeader = `${bold}8) Details of Civilian Involved, if any:${bold}`;
+  const actionHeader = `${bold}8) Follow Up Actions:${bold}`;
 
-  const formsgHeader = `${bold}9) Date & Time Reported To:${bold}`;
+  const statuses = handleOptionsFormat(details.status);
+  const emptyStatuses = statuses === "NIL";
 
-  const roHeader = `${bold}10)Reporting Officer:${bold}`;
+  const gsocHeader = `${bold}9a) Date/Time of Verbal Report to GSOC:${bold}`;
+  const esisHeader = `${bold}9b) Date/Time of ESIS Report:${bold}`;
+  const armHeader = `${bold}10) Date/Time reported to 3 DIV/HQ Armour:${bold}`;
 
-  const voHeader = `${bold}11) Vetting Officer${bold}`;
+  const roHeader = `${bold}11) Reporting Officer:${bold}`;
 
   const result = `${unit}
   
 ${natureHeader}
 ${details.nature}
 
-${descHeader}
-${details.desc}
-
-${otherHeader}
-${nric}
-${name}
-${svs}
-${pes}
-${camp}
-${rslocation}
-
-${statusHeader}
-${handleOptionsFormat(details.status)}
-
 ${dateTimeHeader}
-${details.idate} ${details.itime}
+${details.idate} ${details.itime}HRS
 
-${locationHeader}
-${details.ilocation}
+${svcmenHeader}
+${svcmen}
 
 ${unitInvolvedHeader}
 ${details.involved}
 
+${locationHeader}
+${details.ilocation}
+
+${descHeader}
+${details.desc}
+
+${injuryHeader}
+${details.injury}
+
 ${actionHeader}
-${details.actions === "" ? "NIL" : details.actions}
+${emptyStatuses ? details.actions : details.actions + `\n${statuses}`}
 
-${civiInvolvedHeader}
-${handleOptionsFormat(details.idetails)}
+${gsocHeader} ${details.gsoc === "" ? "NIL" : `${details.gsoc}HRS`}
 
-${formsgHeader}
-GSOC: ${details.gsoc === "" ? "NIL" : details.gsoc}
-FormSG: ${details.formsg === "" ? "NIL" : details.formsg}
+${esisHeader} ${details.esis === "" ? "NIL" : `${details.esis}HRS`}
+
+${armHeader} ${details.arm === "" ? "NIL" : `${details.arm}HRS`}
 
 ${roHeader}
-${details.ro}
-
-${voHeader}
-${details.vo}`;
+${details.ro}`;
   return result;
 }
