@@ -32,7 +32,7 @@ export default function DefaultForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-      <FormHeading>General Details</FormHeading>
+      <FormHeading>Personal Details</FormHeading>
       <label htmlFor="unit">
         Unit<span className="text-red-500">*</span>
       </label>
@@ -44,69 +44,17 @@ export default function DefaultForm() {
         placeholder="e.g. 40SAR, 41SAR"
         onChange={handleChange}
       />
-      <label htmlFor="nature">
-        Nature of Incident<span className="text-red-500">*</span>
-      </label>
-
-      <input
-        required
-        id="nature"
-        type="text"
-        name="nature"
-        placeholder="Training Related/Non-Training Related"
-        onChange={handleChange}
-      />
-      <label htmlFor="idate">
-        Date of Incident (DDMMYY)<span className="text-red-500">*</span>
+      <label htmlFor="involved">
+        Company<span className="text-red-500">*</span>
       </label>
       <input
         required
-        id="idate"
+        id="involved"
         type="text"
-        name="idate"
-        placeholder="e.g. 010123, 251223, etc."
+        name="involved"
+        placeholder="e.g. Stallion Scout PL, Archer PL 2, etc."
         onChange={handleChange}
       />
-      <label htmlFor="itime">
-        Time of Incident (HHMM)<span className="text-red-500">*</span>
-      </label>
-      <input
-        required
-        id="itime"
-        type="text"
-        name="itime"
-        placeholder="e.g. 0730, 2100, etc."
-        onChange={handleChange}
-      />
-      <label htmlFor="ilocation">
-        Location of Incident<span className="text-red-500">*</span>
-      </label>
-      <input
-        required
-        id="ilocation"
-        type="text"
-        name="ilocation"
-        placeholder="e.g. Home, Jurong Point Shopping Mall, etc."
-        onChange={handleChange}
-      />
-      <div className="w-full flex flex-col items-start justify-center">
-        <label htmlFor="desc">
-          Brief Description of Incident<span className="text-red-500">*</span>
-        </label>
-        <p className="text-slate-400 text-sm">
-          Please include details like 5W1H of incident, reporting sick location,
-          what happened at clinic, etc.
-        </p>
-      </div>
-      <textarea
-        required
-        id="desc"
-        className="h-[150px] field resize-none"
-        name="desc"
-        placeholder="e.g. On 01 Nov 2023 at about 2215hrs, REC JOHN TAN reported sick for fever at Changi General Hospital after he took his temperature which was 39.5 degrees. At the hospital, he took a blood test to test for dengue which was later confirmed."
-        onChange={handleChange}
-      />
-      <FormHeading>Personal Details</FormHeading>
       <label htmlFor="nric">
         Masked NRIC<span className="text-red-500">*</span>
       </label>
@@ -153,17 +101,70 @@ export default function DefaultForm() {
       />
 
       <FormHeading>Incident Details</FormHeading>
-      <label htmlFor="involved">
-        Unit and Company<span className="text-red-500">*</span>
+
+      <label htmlFor="nature">
+        Nature of Incident<span className="text-red-500">*</span>
+      </label>
+
+      <input
+        required
+        id="nature"
+        type="text"
+        name="nature"
+        placeholder="Training Related/Non-Training Related"
+        onChange={handleChange}
+      />
+      <label htmlFor="idate">
+        Date of Incident (DDMMYY)<span className="text-red-500">*</span>
       </label>
       <input
         required
-        id="involved"
-        type="text"
-        name="involved"
-        placeholder="e.g. 40SAR Stallion Scout PL, 40SAR Archer PL 2, etc."
+        id="idate"
+        type="number"
+        name="idate"
+        placeholder="e.g. 010123, 251223, etc."
         onChange={handleChange}
       />
+      <label htmlFor="itime">
+        Time of Incident (HHMM)<span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="itime"
+        type="number"
+        name="itime"
+        placeholder="e.g. 0730, 2100, etc."
+        onChange={handleChange}
+      />
+      <label htmlFor="ilocation">
+        Location of Incident<span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="ilocation"
+        type="text"
+        name="ilocation"
+        placeholder="e.g. Home, Jurong Point Shopping Mall, etc."
+        onChange={handleChange}
+      />
+      <div className="w-full flex flex-col items-start justify-center">
+        <label htmlFor="desc">
+          Brief Description of Incident<span className="text-red-500">*</span>
+        </label>
+        <p className="text-slate-400 text-sm">
+          Please include details like 5W1H of incident, reporting sick location,
+          what happened at clinic, etc.
+        </p>
+      </div>
+      <textarea
+        required
+        id="desc"
+        className="h-[150px] field resize-none"
+        name="desc"
+        placeholder="e.g. On 01 Nov 2023 at about 2215hrs, REC JOHN TAN reported sick for fever at Changi General Hospital after he took his temperature which was 39.5 degrees. At the hospital, he took a blood test to test for dengue which was later confirmed."
+        onChange={handleChange}
+      />
+
       <label htmlFor="injury">
         Injuries/Damage<span className="text-red-500">*</span>
       </label>

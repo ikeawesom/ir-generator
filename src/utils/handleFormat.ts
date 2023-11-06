@@ -10,8 +10,6 @@ function handleOptionsFormat(arr: string[]) {
 export default function handleFormat(details: DetailsType, type: string) {
   const bold = type === "ws" ? "*" : "**";
 
-  const unit = `${bold}${details.unit}${bold}`;
-
   const natureHeader = `${bold}1) Nature and Type of Incident:${bold}`;
 
   const dateTimeHeader = `${bold}2) Date & Time of Incident:${bold}`;
@@ -42,7 +40,7 @@ export default function handleFormat(details: DetailsType, type: string) {
 
   const roHeader = `${bold}11) Reporting Officer:${bold}`;
 
-  const result = `${unit}
+  const result = `${bold}${details.unit}${bold}
   
 ${natureHeader}
 ${details.nature}
@@ -54,7 +52,7 @@ ${svcmenHeader}
 ${svcmen}
 
 ${unitInvolvedHeader}
-${details.involved}
+${details.unit} ${details.involved}
 
 ${locationHeader}
 ${details.ilocation}
