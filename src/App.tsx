@@ -38,6 +38,7 @@ export default function App() {
             </p>
             <div className="flex w-full items-center justify-center gap-4 ">
               <SecondaryButton
+                disabled={option === "tekong"}
                 className={
                   option === "tekong"
                     ? "cursor-default bg-violet-600 text-slate-50"
@@ -48,6 +49,7 @@ export default function App() {
                 Tekong
               </SecondaryButton>
               <SecondaryButton
+                disabled={option === "keat-hong-camp"}
                 className={
                   option === "keat-hong-camp"
                     ? "cursor-default bg-violet-600 text-slate-50"
