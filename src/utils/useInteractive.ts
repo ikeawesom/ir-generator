@@ -25,33 +25,9 @@ export default function useInteractive() {
     setDetails({ ...details, status: temp });
   };
 
-  const handleContactAdd = () => {
-    var temp = details.idetails;
-    temp.push("");
-    setDetails({ ...details, idetails: temp });
-  };
-
-  const handleContactRemove = (index: number) => {
-    var temp = details.idetails;
-    temp.splice(index, 1);
-    setDetails({ ...details, idetails: temp });
-  };
-
-  const handleContactChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    var temp = details.idetails;
-    temp[index] = e.target.value;
-    setDetails({ ...details, idetails: temp });
-  };
-
   return {
     handleStatusAdd,
     handleStatusChange,
     handleStatusRemove,
-    handleContactAdd,
-    handleContactRemove,
-    handleContactChange,
   };
 }

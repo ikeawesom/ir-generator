@@ -10,19 +10,17 @@ export type DetailsType = {
   name: string;
   svs: string;
   pes: string;
-  camp: string;
-  rslocation: string;
   status: string[];
   idate: string;
   itime: string;
   ilocation: string;
+  injury: string;
   involved: string;
   actions: string;
-  idetails: string[];
   gsoc: string;
-  formsg: string;
+  esis: string;
+  arm: string;
   ro: string;
-  vo: string;
 };
 
 type ContextType = {
@@ -47,19 +45,17 @@ export function DetailsProvider({ children }: ProviderTypes) {
     name: "",
     svs: "",
     pes: "",
-    camp: "",
-    rslocation: "",
     status: [],
     idate: "",
     itime: "",
     ilocation: "",
+    injury: "",
     involved: "",
     actions: "",
-    idetails: [],
     gsoc: "",
-    formsg: "",
+    esis: "",
+    arm: "",
     ro: "",
-    vo: "",
   });
 
   return (
