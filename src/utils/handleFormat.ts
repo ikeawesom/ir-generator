@@ -17,10 +17,10 @@ export default function handleFormat(details: DetailsType, type: string) {
   const dateTimeHeader = `${bold}2) Date & Time of Incident:${bold}`;
 
   const svcmenHeader = `${bold}3) Serviceman Involved:${bold}`;
-  const nric = `NRIC: ${details.nric}`;
-  const name = `R/Name: ${details.name}`;
-  const svs = `SVS: ${details.svs}`;
-  const pes = `PES: ${details.pes}`;
+  const nric = `${details.nric}`;
+  const name = `${details.name}`;
+  const svs = `${details.svs}`;
+  const pes = `${details.pes}`;
   const svcmen = `${name}, ${nric}, PES ${pes}, ${svs}`;
 
   const unitInvolvedHeader = `${bold}4) Serviceman Unit and Company:${bold}`;
