@@ -5,6 +5,7 @@ type ButtonType = {
   onClick?: () => void;
   children?: React.ReactNode;
   className?: string;
+  disabled?: boolean;
 };
 
 export default function SecondaryButton({
@@ -12,9 +13,11 @@ export default function SecondaryButton({
   onClick,
   children,
   className,
+  disabled,
 }: ButtonType) {
   return (
     <button
+      disabled={disabled}
       className={twMerge(
         "flex flex-row items-center justify-between gap-2 px-4 py-2 rounded-md shadow-sm bg-white  duration-200 border-[1px] cursor-pointer hover:brightness-95",
         className
