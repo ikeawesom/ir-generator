@@ -3,6 +3,8 @@ import FormHeading from "../FormHeading";
 import Spinner from "../Spinner";
 import { useDetails } from "../../contexts/DetailsContext";
 import useInteractive from "../../utils/useInteractive";
+import { PrimaryButton, SecondaryButton } from "../Buttons";
+import { twMerge } from "tailwind-merge";
 
 export default function DefaultForm() {
   const { details, setDetails } = useDetails();
@@ -10,13 +12,17 @@ export default function DefaultForm() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
-    setLoading(true);
-    setDetails({ ...details, submit: false });
     e.preventDefault();
-    setTimeout(() => {
-      setDetails({ ...details, submit: true });
-      setLoading(false);
-    }, Math.floor(Math.random() * 2000));
+    if (details.nature === "") {
+      alert("Please select the nature of incident.");
+    } else {
+      setLoading(true);
+      setDetails({ ...details, submit: false });
+      setTimeout(() => {
+        setDetails({ ...details, submit: true });
+        setLoading(false);
+      }, Math.floor(Math.random() * 2000));
+    }
   };
 
   const handleChange = (
@@ -106,14 +112,38 @@ export default function DefaultForm() {
         Nature of Incident<span className="text-red-500">*</span>
       </label>
 
-      <input
+      <div className="flex w-full items-center justify-between gap-4 mb-4">
+        <SecondaryButton
+          disabled={details.nature === "Training Related"}
+          className={twMerge(
+            details.nature === "Training Related" &&
+              "cursor-default bg-violet-600 text-slate-50"
+          )}
+          onClick={() => setDetails({ ...details, nature: "Training Related" })}
+        >
+          Training Related
+        </SecondaryButton>
+        <SecondaryButton
+          disabled={details.nature === "Non-Training Related"}
+          className={twMerge(
+            details.nature === "Non-Training Related" &&
+              "cursor-default bg-violet-600 text-slate-50"
+          )}
+          onClick={() =>
+            setDetails({ ...details, nature: "Non-Training Related" })
+          }
+        >
+          Non-Training Related
+        </SecondaryButton>
+      </div>
+      {/* <input
         required
         id="nature"
         type="text"
         name="nature"
         placeholder="Training Related/Non-Training Related"
         onChange={handleChange}
-      />
+      /> */}
       <label htmlFor="idate">
         Date of Incident (DDMMYY)<span className="text-red-500">*</span>
       </label>
@@ -270,21 +300,15 @@ export default function DefaultForm() {
         placeholder="e.g. CPT JOHN TAN, OC STALLION, etc."
         onChange={handleChange}
       />
-      <button
-        type="submit"
-        disabled={loading}
-        className={`rounded-md text-white bg-violet-600 py-2 w-full duration-200 ${
-          loading ? "opacity-40" : "hover:opacity-80"
-        }`}
-      >
+      <PrimaryButton type="submit" disabled={loading}>
         {loading ? (
           <span className="flex flex-row gap-2 items-center justify-center">
-            Working <Spinner />
+            Generating <Spinner />
           </span>
         ) : (
           "Generate IR"
         )}
-      </button>
+      </PrimaryButton>
     </form>
   );
 }
