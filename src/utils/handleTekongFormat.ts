@@ -24,7 +24,7 @@ export default function handleTekongFormat(
   const svs = `${details.svs}`;
   const fourD = details.fourd;
   const pes = `PES: ${details.pes}`;
-  const svcmen = `${name}, ${nric}, PES ${pes}, ${fourD}, ${svs}`;
+  const svcmen = `${name}, ${nric}, ${pes}, ${fourD}, ${svs}`;
 
   const unitInvolvedHeader = `${bold}4) Serviceman Unit and Company:${bold}`;
 
