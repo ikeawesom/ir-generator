@@ -1,7 +1,7 @@
 import DetailsArea from "./components/DetailsArea";
 import FormContainer from "./components/FormContainer";
 import Header from "./components/Header";
-import SecondaryButton from "./components/SecondaryButton";
+import { SecondaryButton } from "./components/Buttons";
 import { useDetails } from "./contexts/DetailsContext";
 import { Toaster, toast } from "sonner";
 import { useSearchParams } from "react-router-dom";
