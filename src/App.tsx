@@ -40,7 +40,7 @@ export default function App() {
         <div className="flex flex-col gap-6 items-center justify-center">
           <div className="sm:w-[580px] w-[85vw] flex flex-col items-center justify-center gap-2">
             <p className="text-center text-slate-400">
-              Please choose your current camp.
+              Please choose your current unit.
             </p>
             <div className="flex w-full items-center justify-center gap-4 ">
               <SecondaryButton
@@ -52,7 +52,7 @@ export default function App() {
                 }
                 onClick={paramTekong}
               >
-                Tekong
+                BMTC
               </SecondaryButton>
               <SecondaryButton
                 disabled={option === "keat-hong-camp"}
@@ -63,7 +63,7 @@ export default function App() {
                 }
                 onClick={paramKhc}
               >
-                Keat Hong Camp
+                40 SAR
               </SecondaryButton>
             </div>
           </div>
