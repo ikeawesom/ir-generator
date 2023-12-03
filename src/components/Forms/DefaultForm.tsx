@@ -47,6 +47,7 @@ export default function DefaultForm() {
         id="unit"
         type="text"
         name="unit"
+        value={details.unit}
         placeholder="e.g. 40SAR, 41SAR"
         onChange={handleChange}
       />
@@ -61,17 +62,7 @@ export default function DefaultForm() {
         placeholder="e.g. Stallion Scout PL, Archer PL 2, etc."
         onChange={handleChange}
       />
-      <label htmlFor="nric">
-        Masked NRIC<span className="text-red-500">*</span>
-      </label>
-      <input
-        required
-        id="nric"
-        type="text"
-        name="nric"
-        placeholder="TXXXX123A"
-        onChange={handleChange}
-      />
+
       <label htmlFor="name">
         Rank and Name<span className="text-red-500">*</span>
       </label>
@@ -81,6 +72,17 @@ export default function DefaultForm() {
         type="text"
         name="name"
         placeholder="e.g. REC JOHN TAN JIA WEI"
+        onChange={handleChange}
+      />
+      <label htmlFor="nric">
+        Masked NRIC<span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="nric"
+        type="text"
+        name="nric"
+        placeholder="TXXXX123A"
         onChange={handleChange}
       />
       <label htmlFor="svs">
@@ -194,31 +196,6 @@ export default function DefaultForm() {
         placeholder="e.g. On 01 Nov 2023 at about 2215hrs, REC JOHN TAN reported sick for fever at Changi General Hospital after he took his temperature which was 39.5 degrees. At the hospital, he took a blood test to test for dengue which was later confirmed."
         onChange={handleChange}
       />
-
-      <label htmlFor="injury">
-        Injuries/Damage<span className="text-red-500">*</span>
-      </label>
-      <input
-        required
-        id="injury"
-        type="text"
-        name="injury"
-        placeholder="e.g. Diagnosed with flu, etc."
-        onChange={handleChange}
-      />
-
-      <label htmlFor="actions">
-        Follow Up Actions<span className="text-red-500">*</span>
-      </label>
-      <input
-        id="actions"
-        required
-        type="text"
-        name="actions"
-        placeholder="e.g. Continue applying XX medication on wound, etc."
-        onChange={handleChange}
-      />
-
       <FormHeading
         onClick={handleStatusAdd}
         buttonContent="Add"
@@ -258,6 +235,31 @@ export default function DefaultForm() {
       )}
 
       <FormHeading>Reporting</FormHeading>
+      <label htmlFor="nok">
+        Name and Relationship of Next of Kin (NOK)
+        <span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="nok"
+        type="text"
+        name="nok"
+        placeholder="e.g. John Tan (Father), Mary Lim (Mother), etc."
+        onChange={handleChange}
+      />
+      <label htmlFor="nokdate">
+        Date/Time Reported to NOK (DDMMYY/HHMM)
+        <span className="text-red-500">*</span>
+      </label>
+      <input
+        required
+        id="nokdate"
+        type="text"
+        name="nokdate"
+        placeholder="e.g. 010123 1200, 020223 0900, etc."
+        onChange={handleChange}
+      />
+
       <label htmlFor="gsoc">
         Date/Time of Verbal Report to GSOC (DDMMYY/HHMM)
       </label>
