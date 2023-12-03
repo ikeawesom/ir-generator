@@ -114,7 +114,7 @@ export default function DefaultForm() {
         Nature of Incident<span className="text-red-500">*</span>
       </label>
 
-      <div className="flex w-full items-center justify-between gap-4 mb-4">
+      <div className="flex w-full items-center justify-between gap-x-4 gap-y-2 mb-4 flex-col sm:flex-row">
         <SecondaryButton
           disabled={details.nature === "Training Related"}
           className={twMerge(
