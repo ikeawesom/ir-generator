@@ -14,9 +14,9 @@ export type DetailsType = {
   idate: string;
   itime: string;
   ilocation: string;
-  injury: string;
   involved: string;
-  actions: string;
+  nok: string;
+  nokdate: string;
   gsoc: string;
   esis: string;
   arm: string;
@@ -38,7 +38,7 @@ export function DetailsProvider({ children }: ProviderTypes) {
   const [details, setDetails] = useState<DetailsType>({
     submit: false,
     platform: "ws",
-    unit: "",
+    unit: "40SAR",
     nature: "",
     desc: "",
     nric: "",
@@ -49,9 +49,9 @@ export function DetailsProvider({ children }: ProviderTypes) {
     idate: "",
     itime: "",
     ilocation: "",
-    injury: "",
     involved: "",
-    actions: "",
+    nok: "",
+    nokdate: "",
     gsoc: "",
     esis: "",
     arm: "",
