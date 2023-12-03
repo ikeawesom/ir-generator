@@ -30,7 +30,12 @@ export default function App() {
   };
 
   const option = searchParams.get("option") as string;
-  const submitted = details.submit || tekongDetails.submit;
+  const submitted =
+    option === "tekong"
+      ? tekongDetails.submit
+      : option === "keat-hong-camp"
+      ? details.submit
+      : false;
 
   return (
     <div className="p-4 bg-slate-50">
