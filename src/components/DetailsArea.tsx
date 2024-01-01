@@ -28,8 +28,15 @@ export default function DetailsArea({ onCopy, option }: DetailsType) {
       const data = handleFormat(details, details.platform);
       setFormatted(data);
     } else if (option === "tekong") {
-      const data = handleTekongFormat(tekongDetails, tekongDetails.platform);
-      setFormatted(data);
+      const state = localStorage.getItem("state");
+      if (state !== null) {
+        const data = handleTekongFormat(
+          state,
+          tekongDetails,
+          tekongDetails.platform
+        );
+        setFormatted(data);
+      }
     }
   }, [option, details, tekongDetails]);
 

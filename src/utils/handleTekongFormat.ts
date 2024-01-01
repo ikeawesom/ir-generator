@@ -8,12 +8,21 @@ function handleOptionsFormat(arr: string[]) {
 }
 
 export default function handleTekongFormat(
+  state: string,
   details: TekongDetailsType,
   type: string
 ) {
+  const dateObj = new Date();
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth() + 1;
+  const day = dateObj.getDate();
+  const dateStr = `${day < 10 ? `0${day}` : day}${
+    month < 10 ? `0${month}` : month
+  }${year.toString().substring(2)}`;
   const bold = type === "ws" ? "*" : "**";
 
-  const mainHeader = `${bold}${details.involved}${bold}`;
+  const mainHeader = `${bold}${dateStr}/${details.involved}${bold}`;
+  const stateHeader = `${bold}${state.toUpperCase()}${bold}`;
   const natureHeader = `${bold}1) Nature and Type of Incident:${bold}`;
 
   const dateTimeHeader = `${bold}2) Date & Time of Incident:${bold}`;
@@ -52,6 +61,7 @@ export default function handleTekongFormat(
   const roHeader = `${bold}11) Unit Reporting POC:${bold}`;
 
   const result = `${mainHeader}
+ ${stateHeader}
   
 ${natureHeader}
 ${details.nature}
