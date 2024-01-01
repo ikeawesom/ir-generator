@@ -35,9 +35,7 @@ export default function handleTekongFormat(
   const pes = `PES: ${details.pes}`;
   const svcmen = `${name}, ${nric}, ${pes}, ${fourD}, ${svs}`;
 
-  const unitInvolvedHeader = `${bold}4) Serviceman Unit and Company:${bold}`;
-
-  const locationHeader = `${bold}5) Location of Incident:${bold}`;
+  const locationHeader = `${bold}4) Location of Incident:${bold}`;
 
   const injuryHeader = `${bold}5) Injury/Damage:${bold}`;
 
@@ -48,20 +46,18 @@ export default function handleTekongFormat(
   const statuses = handleOptionsFormat(details.status);
   const emptyStatuses = statuses === "NIL";
 
-  const stakes = handleOptionsFormat(details.stake);
-
   const stakeHeader = `${bold}8) Stakeholders Informed:${bold}`;
 
-  const nokHeader = `${bold}9) NOK Informed:${bold}`;
+  const nokHeader = `${bold}a) NOK:${bold}`;
 
-  const gsocHeader = `${bold}9a) Date/Time of Verbal Report to GSOC:${bold}`;
-  const esisHeader = `${bold}9b) Date/Time of ESIS Report:${bold}`;
-  const armHeader = `${bold}10) Date/Time reported to 8SAB CDOO:${bold}`;
+  const gsocHeader = `${bold}b) Date/Time of Verbal Report to GSOC:${bold}`;
+  const esisHeader = `${bold}c) Date/Time of ESIS Report:${bold}`;
+  const armHeader = `${bold}d) Date/Time reported to 8SAB CDOO:${bold}`;
 
-  const roHeader = `${bold}11) Unit Reporting POC:${bold}`;
+  const roHeader = `${bold}9) Unit Reporting POC:${bold}`;
 
   const result = `${mainHeader}
- ${stateHeader}
+${stateHeader}
   
 ${natureHeader}
 ${details.nature}
@@ -71,9 +67,6 @@ ${details.idate} ${details.itime}HRS
 
 ${svcmenHeader}
 ${svcmen}
-
-${unitInvolvedHeader}
-${details.involved}
 
 ${locationHeader}
 ${details.ilocation}
@@ -88,15 +81,9 @@ ${actionHeader}
 ${emptyStatuses ? details.actions : details.actions + `\n${statuses}`}
 
 ${stakeHeader}
-${stakes}
-
-${nokHeader}
-${details.name} informed ${details.nok} on ${details.nokdate}HRS
-
+${nokHeader} ${details.name} informed ${details.nok} on ${details.nokdate}HRS
 ${gsocHeader} ${details.gsoc === "" ? "NIL" : `${details.gsoc}HRS`}
-
 ${esisHeader} ${details.esis === "" ? "NIL" : `${details.esis}HRS`}
-
 ${armHeader} ${details.arm === "" ? "NIL" : `${details.arm}HRS`}
 
 ${roHeader}

@@ -17,7 +17,6 @@ export type TekongDetailsType = {
   ilocation: string;
   injury: string;
   actions: string;
-  stake: string[];
   nok: string;
   nokdate: string;
   gsoc: string;
@@ -54,7 +53,6 @@ export function TekongProvider({ children }: ProviderTypes) {
     involved: "",
     injury: "",
     actions: "",
-    stake: [],
     status: [],
     nok: "",
     nokdate: "",
