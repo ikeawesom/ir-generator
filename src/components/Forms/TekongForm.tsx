@@ -32,14 +32,8 @@ export default function TekongForm() {
     setTekongDetails({ ...tekongDetails, [e.target.name]: e.target.value });
   };
 
-  const {
-    handleStatusAdd,
-    handleStatusChange,
-    handleStatusRemove,
-    handleStakeAdd,
-    handleStakeChange,
-    handleStakeRemove,
-  } = useTekongInteractive();
+  const { handleStatusAdd, handleStatusChange, handleStatusRemove } =
+    useTekongInteractive();
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
@@ -225,45 +219,6 @@ export default function TekongForm() {
         placeholder="e.g. Continue applying XX medication on wound, etc."
         onChange={handleChange}
       />
-      <FormHeading>Reporting</FormHeading>
-
-      <FormHeading
-        onClick={handleStakeAdd}
-        buttonContent="Add"
-        buttonClass="bg-violet-600 text-slate-50 px-4 text-sm py-1 hover:opacity-80 duration-200 rounded-md"
-      >
-        Stakeholders
-      </FormHeading>
-      {tekongDetails.stake.length === 0 ? (
-        <div className="w-full h-[80px] grid place-items-center bg-slate-50 rounded-md mb-2">
-          <p className="text-slate-400 text-sm">No Stakeholders Added</p>
-        </div>
-      ) : (
-        tekongDetails.stake.map((item, index) => (
-          <div
-            className="flex gap-3 items-center justify-between w-full mb-2"
-            key={index}
-          >
-            <input
-              required
-              id="stake"
-              type="text"
-              name="stake"
-              value={item}
-              placeholder="e.g. CPT JOHN TAN (OC), MSG ALEX LOH (CSM)"
-              onChange={(e) => handleStakeChange(e, index)}
-              className="m-0 w-full"
-            />
-            <button
-              type="button"
-              onClick={() => handleStakeRemove(index)}
-              className="bg-red-400 text-slate-50 w-[100px] px-2 py-1 rounded-md hover:brightness-90 duration-200"
-            >
-              Remove
-            </button>
-          </div>
-        ))
-      )}
 
       <FormHeading
         onClick={handleStatusAdd}
@@ -302,6 +257,8 @@ export default function TekongForm() {
           </div>
         ))
       )}
+      <FormHeading>Reporting</FormHeading>
+
       <label htmlFor="nok">
         Name and Relationship of Next of Kin (NOK)
         <span className="text-red-500">*</span>
