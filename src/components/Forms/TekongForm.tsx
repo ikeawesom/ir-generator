@@ -187,6 +187,7 @@ export default function TekongForm() {
           Please include details like the 5W1H of incident, reporting sick
           location, what happened at the clinic, etc.
         </p>
+<p className="text-slate-400 text-sm italic">{"e.g. On 01 Nov 2023 at about 2215hrs, REC JOHN TAN reported sick for fever at Changi General Hospital after he took his temperature which was 39.5 degrees. At the hospital, he took a blood test to test for dengue which was later confirmed."}</p>
       </div>
       <textarea
         required
