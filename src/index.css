@@ -11,6 +11,7 @@
 }
 
 input,
+select,
 textarea.field {
   border-width: 1px;
   @apply shadow-sm border-slate-200 rounded-md p-2 mb-4;
