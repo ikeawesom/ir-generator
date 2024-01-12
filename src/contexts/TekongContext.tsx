@@ -12,13 +12,14 @@ export type TekongDetailsType = {
   fourd: number;
   pes: string;
   status: string[];
-  idate: number;
+  idate: string;
   itime: number;
   ilocation: string;
   injury: string;
   actions: string;
   nok: string;
   nokdate: string;
+  noktime: string;
   gsoc: string;
   esis: string;
   arm: string;
@@ -41,21 +42,22 @@ export function TekongProvider({ children }: ProviderTypes) {
     submit: false,
     platform: "ws",
     nature: "",
-    idate: 0,
+    idate: "",
     itime: 0,
     ilocation: "",
     desc: "",
     nric: "",
     name: "",
     fourd: 0,
-    svs: "",
-    pes: "",
+    svs: "NSF",
+    pes: "A",
     involved: "",
     injury: "",
     actions: "",
     status: [],
     nok: "",
     nokdate: "",
+    noktime: "",
     gsoc: "",
     esis: "",
     arm: "",

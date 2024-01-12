@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormHeading from "../FormHeading";
 import Spinner from "../Spinner";
 import { useTekongDetails } from "../../contexts/TekongContext";
@@ -28,12 +28,34 @@ export default function TekongForm() {
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLSelectElement>
   ) => {
     setTekongDetails({ ...tekongDetails, [e.target.name]: e.target.value });
   };
 
   const { handleStatusAdd, handleStatusChange, handleStatusRemove } =
     useTekongInteractive();
+
+  const [doi, setDoi] = useState({
+    day: "01",
+    month: "JAN",
+    year: "24",
+  });
+
+  const [nokDoi, setNokDoi] = useState({
+    day: "01",
+    month: "JAN",
+    year: "24",
+  });
+
+  useEffect(() => {
+    setTekongDetails({
+      ...tekongDetails,
+      idate: `${doi.day} ${doi.month} ${doi.year}`,
+      nokdate: `${nokDoi.day} ${nokDoi.month} ${nokDoi.year}`,
+    });
+    console.log(nokDoi);
+  }, [doi, nokDoi]);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
@@ -75,14 +97,25 @@ export default function TekongForm() {
       <label htmlFor="svs">
         Service Status<span className="text-red-500">*</span>
       </label>
-      <input
+      {/* <input
         required
         id="svs"
         type="text"
         name="svs"
         placeholder="NSF, REG, etc."
         onChange={handleChange}
-      />
+      /> */}
+      <select
+        className="w-full"
+        id="svs"
+        name="svs"
+        required
+        onChange={handleChange}
+      >
+        <option value="NSF">NSF</option>
+        <option value="REG">REG</option>
+        <option value="NSMEN">NS MEN</option>
+      </select>
       <label htmlFor="fourd">
         4D Number<span className="text-red-500">*</span>
       </label>
@@ -99,14 +132,35 @@ export default function TekongForm() {
       <label htmlFor="pes">
         PES Status<span className="text-red-500">*</span>
       </label>
-      <input
+      {/* <input
         required
         id="pes"
         type="text"
         name="pes"
         placeholder="A, B1, B2, etc."
         onChange={handleChange}
-      />
+      /> */}
+
+      <select
+        className="w-full"
+        id="pes"
+        name="pes"
+        required
+        onChange={handleChange}
+      >
+        <option value="A">A</option>
+        <option value="B1">B1</option>
+        <option value="B2">B2</option>
+        <option value="B3">B3</option>
+        <option value="B4">B4</option>
+        <option value="BP">BP</option>
+        <option value="C2">C2</option>
+        <option value="C9">C9</option>
+        <option value="D">D</option>
+        <option value="E1">E1</option>
+        <option value="E9">E9</option>
+        <option value="F">F</option>
+      </select>
 
       <FormHeading>Incident Details</FormHeading>
       <label htmlFor="nature">
@@ -143,18 +197,73 @@ export default function TekongForm() {
         </SecondaryButton>
       </div>
       <label htmlFor="idate">
-        Date of Incident (DDMMYY)<span className="text-red-500">*</span>
+        Date of Incident (DD-MONTH-YY)<span className="text-red-500">*</span>
       </label>
-      <input
-        required
-        id="idate"
-        type="number"
-        name="idate"
-        maxLength={6}
-        minLength={6}
-        placeholder="e.g. 010123, 251223, etc."
-        onChange={handleChange}
-      />
+      <div className="flex items-center gap-2 justify-between w-full">
+        {/* <input
+          className="w-full"
+          required
+          type="number"
+          maxLength={2}
+          placeholder="Day"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setDoi({ ...doi, day: Number.parseInt(e.target.value) });
+          }}
+        /> */}
+        <select
+          className="w-full"
+          id="day"
+          name="day"
+          required
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setDoi({ ...doi, day: e.target.value });
+          }}
+        >
+          {new Array(31).fill(1).map((item: number, index: number) => (
+            <option key={index} value={item}>
+              {index + 1}
+            </option>
+          ))}
+        </select>
+        <select
+          className="w-full"
+          id="months"
+          name="months"
+          required
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setDoi({ ...doi, month: e.target.value });
+          }}
+        >
+          <option value="JAN">JAN</option>
+          <option value="FEB">FEB</option>
+          <option value="MAR">MAR</option>
+          <option value="APR">APR</option>
+          <option value="MAY">MAY</option>
+          <option value="JUN">JUN</option>
+          <option value="JUL">JUL</option>
+          <option value="AUG">AUG</option>
+          <option value="SEP">SEP</option>
+          <option value="OCT">OCT</option>
+          <option value="NOV">NOV</option>
+          <option value="DEC">DEC</option>
+        </select>
+
+        <select
+          id="year"
+          name="year"
+          required
+          className="w-full"
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setDoi({ ...doi, year: e.target.value });
+          }}
+        >
+          {new Array(5).fill(1).map((item: number, index: number) => (
+            <option key={index} value={item}>
+              {index + 24}
+            </option>
+          ))}
+        </select>
+      </div>
       <label htmlFor="itime">
         Time of Incident (HHMM)<span className="text-red-500">*</span>
       </label>
@@ -187,7 +296,11 @@ export default function TekongForm() {
           Please include details like the 5W1H of incident, reporting sick
           location, what happened at the clinic, etc.
         </p>
-<p className="text-slate-400 text-sm italic">{"e.g. On 01 Nov 2023 at about 2215hrs, REC JOHN TAN reported sick for fever at Changi General Hospital after he took his temperature which was 39.5 degrees. At the hospital, he took a blood test to test for dengue which was later confirmed."}</p>
+        <p className="text-slate-400 text-sm italic">
+          {
+            "e.g. On 01 Nov 2023 at about 2215hrs, REC JOHN TAN reported sick for fever at Changi General Hospital after he took his temperature which was 39.5 degrees. At the hospital, he took a blood test to test for dengue which was later confirmed."
+          }
+        </p>
       </div>
       <textarea
         required
@@ -273,14 +386,83 @@ export default function TekongForm() {
         onChange={handleChange}
       />
       <label htmlFor="nokdate">
-        Date/Time Reported to NOK (DDMMYY/HHMM)
+        Date Reported to NOK (DD-MONTH-YY)
+        <span className="text-red-500">*</span>
+      </label>
+      <div className="flex items-center gap-2 justify-between w-full">
+        {/* <input
+          className="w-full"
+          required
+          type="number"
+          maxLength={2}
+          placeholder="Day"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setDoi({ ...doi, day: Number.parseInt(e.target.value) });
+          }}
+        /> */}
+        <select
+          className="w-full"
+          id="day"
+          name="day"
+          required
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setNokDoi({ ...nokDoi, day: e.target.value });
+          }}
+        >
+          {new Array(31).fill(1).map((item: number, index: number) => (
+            <option key={index} value={item}>
+              {index + 1}
+            </option>
+          ))}
+        </select>
+        <select
+          className="w-full"
+          id="months"
+          name="months"
+          required
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setNokDoi({ ...nokDoi, month: e.target.value });
+          }}
+        >
+          <option value="JAN">JAN</option>
+          <option value="FEB">FEB</option>
+          <option value="MAR">MAR</option>
+          <option value="APR">APR</option>
+          <option value="MAY">MAY</option>
+          <option value="JUN">JUN</option>
+          <option value="JUL">JUL</option>
+          <option value="AUG">AUG</option>
+          <option value="SEP">SEP</option>
+          <option value="OCT">OCT</option>
+          <option value="NOV">NOV</option>
+          <option value="DEC">DEC</option>
+        </select>
+
+        <select
+          id="year"
+          name="year"
+          required
+          className="w-full"
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setNokDoi({ ...nokDoi, year: e.target.value });
+          }}
+        >
+          {new Array(5).fill(1).map((item: number, index: number) => (
+            <option key={index} value={index + 24}>
+              {index + 24}
+            </option>
+          ))}
+        </select>
+      </div>
+      <label htmlFor="noktime">
+        Time Reported to NOK (HHMM)
         <span className="text-red-500">*</span>
       </label>
       <input
         required
-        id="nokdate"
+        id="noktime"
         type="text"
-        name="nokdate"
+        name="noktime"
         placeholder="e.g. 010123 1200, 020223 0900, etc."
         onChange={handleChange}
       />
