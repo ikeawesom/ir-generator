@@ -52,10 +52,15 @@ export default function TekongForm() {
     setTekongDetails({
       ...tekongDetails,
       idate: `${doi.day} ${doi.month} ${doi.year}`,
+    });
+  }, [doi]);
+
+  useEffect(() => {
+    setTekongDetails({
+      ...tekongDetails,
       nokdate: `${nokDoi.day} ${nokDoi.month} ${nokDoi.year}`,
     });
-    console.log(nokDoi);
-  }, [doi, nokDoi]);
+  }, [nokDoi]);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
@@ -220,7 +225,7 @@ export default function TekongForm() {
           }}
         >
           {new Array(31).fill(1).map((item: number, index: number) => (
-            <option key={index} value={item}>
+            <option key={index} value={index + 1}>
               {index + 1}
             </option>
           ))}
@@ -258,7 +263,7 @@ export default function TekongForm() {
           }}
         >
           {new Array(5).fill(1).map((item: number, index: number) => (
-            <option key={index} value={item}>
+            <option key={index} value={index + 24}>
               {index + 24}
             </option>
           ))}
@@ -410,7 +415,7 @@ export default function TekongForm() {
           }}
         >
           {new Array(31).fill(1).map((item: number, index: number) => (
-            <option key={index} value={item}>
+            <option key={index} value={index + 1}>
               {index + 1}
             </option>
           ))}
@@ -463,7 +468,7 @@ export default function TekongForm() {
         id="noktime"
         type="text"
         name="noktime"
-        placeholder="e.g. 010123 1200, 020223 0900, etc."
+        placeholder="e.g. 1200, 0900, etc."
         onChange={handleChange}
       />
       <label htmlFor="gsoc">
