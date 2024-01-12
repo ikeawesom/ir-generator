@@ -78,9 +78,13 @@ ${natureHeader}
 ${details.nature}
 
 ${dateTimeHeader}
-${details.idate.length < 9 ? `0${details.idate}` : details.idate} ${
-    details.itime
-  }HRS
+${
+  details.idate === ""
+    ? "01 JAN 24"
+    : details.idate.length < 9
+    ? `0${details.idate}`
+    : details.idate
+} ${details.itime}HRS
 
 ${svcmenHeader}
 ${svcmen}

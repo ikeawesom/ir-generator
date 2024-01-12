@@ -52,15 +52,11 @@ export default function TekongForm() {
     setTekongDetails({
       ...tekongDetails,
       idate: `${doi.day} ${doi.month} ${doi.year}`,
-    });
-  }, [doi]);
-
-  useEffect(() => {
-    setTekongDetails({
-      ...tekongDetails,
       nokdate: `${nokDoi.day} ${nokDoi.month} ${nokDoi.year}`,
     });
-  }, [nokDoi]);
+    console.log(tekongDetails.idate);
+    console.log(tekongDetails.nokdate);
+  }, [doi, nokDoi]);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
