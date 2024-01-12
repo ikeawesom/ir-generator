@@ -7,6 +7,21 @@ function handleOptionsFormat(arr: string[]) {
   return result.trimEnd();
 }
 
+const MONTHS = [
+  "JAN",
+  "FEB",
+  "MAR",
+  "APR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AUG",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DEC",
+];
+
 export default function handleTekongFormat(
   state: string,
   details: TekongDetailsType,
@@ -14,11 +29,11 @@ export default function handleTekongFormat(
 ) {
   const dateObj = new Date();
   const year = dateObj.getFullYear();
-  const month = dateObj.getMonth() + 1;
+  const month = MONTHS[dateObj.getMonth()];
   const day = dateObj.getDate();
-  const dateStr = `${day < 10 ? `0${day}` : day}${
-    month < 10 ? `0${month}` : month
-  }${year.toString().substring(2)}`;
+  const dateStr = `${day < 10 ? `0${day}` : day} ${month} ${year
+    .toString()
+    .substring(2)}`;
   const bold = type === "ws" ? "*" : "**";
 
   const mainHeader = `${bold}${dateStr}/${details.involved}${bold}`;
@@ -63,7 +78,9 @@ ${natureHeader}
 ${details.nature}
 
 ${dateTimeHeader}
-${details.idate} ${details.itime}HRS
+${details.idate.length < 9 ? `0${details.idate}` : details.idate} ${
+    details.itime
+  }HRS
 
 ${svcmenHeader}
 ${svcmen}
@@ -81,7 +98,9 @@ ${actionHeader}
 ${emptyStatuses ? details.actions : details.actions + `\n${statuses}`}
 
 ${stakeHeader}
-${nokHeader} ${details.name} informed ${details.nok} on ${details.nokdate}HRS
+${nokHeader} ${details.name} informed ${details.nok} on ${
+    details.nokdate.length < 9 ? `0${details.nokdate}` : details.nokdate
+  } ${details.noktime}HRS
 ${gsocHeader} ${details.gsoc === "" ? "NIL" : `${details.gsoc}HRS`}
 ${esisHeader} ${details.esis === "" ? "NIL" : `${details.esis}HRS`}
 ${armHeader} ${details.arm === "" ? "NIL" : `${details.arm}HRS`}
