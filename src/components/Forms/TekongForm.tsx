@@ -54,8 +54,6 @@ export default function TekongForm() {
       idate: `${doi.day} ${doi.month} ${doi.year}`,
       nokdate: `${nokDoi.day} ${nokDoi.month} ${nokDoi.year}`,
     });
-    console.log(tekongDetails.idate);
-    console.log(tekongDetails.nokdate);
   }, [doi, nokDoi]);
 
   return (
@@ -64,6 +62,9 @@ export default function TekongForm() {
       <label htmlFor="involved">
         Unit and Company<span className="text-red-500">*</span>
       </label>
+      <p className="text-slate-400 text-sm italic">
+        {"e.g. BMTC3/40 SAR/BMT Coy A, etc."}
+      </p>
       <input
         required
         id="involved"
@@ -75,6 +76,7 @@ export default function TekongForm() {
       <label htmlFor="name">
         Rank and Name<span className="text-red-500">*</span>
       </label>
+      <p className="text-slate-400 text-sm italic">e.g. REC JOHN TAN JIA WEI</p>
       <input
         required
         id="name"
@@ -86,6 +88,7 @@ export default function TekongForm() {
       <label htmlFor="nric">
         Full NRIC<span className="text-red-500">*</span>
       </label>
+      <p className="text-slate-400 text-sm italic">e.g. T1234568A</p>
       <input
         required
         id="nric"
@@ -120,6 +123,7 @@ export default function TekongForm() {
       <label htmlFor="fourd">
         4D Number<span className="text-red-500">*</span>
       </label>
+      <p className="text-slate-400 text-sm italic">e.g. 1111</p>
       <input
         required
         id="fourd"
@@ -268,6 +272,7 @@ export default function TekongForm() {
       <label htmlFor="itime">
         Time of Incident (HHMM)<span className="text-red-500">*</span>
       </label>
+      <p className="text-slate-400 text-sm italic">e.g. 0730, 2100, etc.</p>
       <input
         required
         id="itime"
@@ -281,6 +286,9 @@ export default function TekongForm() {
       <label htmlFor="ilocation">
         Location of Incident<span className="text-red-500">*</span>
       </label>
+      <p className="text-slate-400 text-sm italic">
+        e.g. Home, Jurong Point Shopping Mall, etc.
+      </p>
       <input
         required
         id="ilocation"
@@ -314,6 +322,9 @@ export default function TekongForm() {
       <label htmlFor="injury">
         Injuries/Damage<span className="text-red-500">*</span>
       </label>
+      <p className="text-slate-400 text-sm italic">
+        e.g. Diagnosed with flu, etc.
+      </p>
       <input
         required
         id="injury"
@@ -326,6 +337,9 @@ export default function TekongForm() {
       <label htmlFor="actions">
         Follow Up Updates<span className="text-red-500">*</span>
       </label>
+      <p className="text-slate-400 text-sm italic">
+        e.g. Continue applying XX medication on wound, etc.
+      </p>
       <input
         id="actions"
         required
@@ -342,6 +356,10 @@ export default function TekongForm() {
       >
         Status Received
       </FormHeading>
+      <p className="text-slate-400 text-sm italic">
+        e.g. 2 Day LD (010124-020123)
+      </p>
+
       {tekongDetails.status.length === 0 ? (
         <div className="w-full h-[80px] grid place-items-center bg-slate-50 rounded-md mb-2">
           <p className="text-slate-400 text-sm">No Status Added</p>
@@ -378,6 +396,10 @@ export default function TekongForm() {
         Name and Relationship of Next of Kin (NOK)
         <span className="text-red-500">*</span>
       </label>
+      <p className="text-slate-400 text-sm italic">
+        e.g. John Tan (Father), Mary Lim (Mother), etc.
+      </p>
+
       <input
         required
         id="nok"
@@ -459,6 +481,8 @@ export default function TekongForm() {
         Time Reported to NOK (HHMM)
         <span className="text-red-500">*</span>
       </label>
+      <p className="text-slate-400 text-sm italic">e.g. 1200, 0900, etc.</p>
+
       <input
         required
         id="noktime"
@@ -470,6 +494,9 @@ export default function TekongForm() {
       <label htmlFor="gsoc">
         Date/Time of Verbal Report to GSOC (DDMMYY/HHMM)
       </label>
+      <p className="text-slate-400 text-sm italic">
+        e.g. 010123 1200, 020223 0900, etc.
+      </p>
       <input
         id="gsoc"
         type="text"
@@ -478,6 +505,9 @@ export default function TekongForm() {
         onChange={handleChange}
       />
       <label htmlFor="esis">Date/Time of ESIS Report (DDMMYY/HHMM)</label>
+      <p className="text-slate-400 text-sm italic">
+        e.g. 010123 1200, 020223 0900, etc.
+      </p>
       <input
         id="esis"
         type="text"
@@ -487,6 +517,9 @@ export default function TekongForm() {
       />
 
       <label htmlFor="arm">Date/Time Reported to 8SAB CDOO (DDMMYY/HHMM)</label>
+      <p className="text-slate-400 text-sm italic">
+        e.g. 010123 1200, 020223 0900, etc.
+      </p>
       <input
         id="arm"
         type="text"
@@ -499,6 +532,9 @@ export default function TekongForm() {
         Reporting Officer (Rank/Name/Appointment)
         <span className="text-red-500">*</span>
       </label>
+      <p className="text-slate-400 text-sm italic">
+        e.g. CPT JOHN TAN, OC STALLION, etc.
+      </p>
       <input
         required
         id="ro"
