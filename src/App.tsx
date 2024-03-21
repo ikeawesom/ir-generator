@@ -22,7 +22,7 @@ export default function App() {
   useEffect(() => {
     const option = searchParams.get("option");
     if (!option || !OPTIONS.includes(option))
-      setSearchParams({ option: "tekong" });
+      paramKhc();
   }, [searchParams, setSearchParams]);
 
   useEffect(() => {
