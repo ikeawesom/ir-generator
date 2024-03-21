@@ -51,35 +51,6 @@ export default function App() {
       <div className="flex flex-col gap-10 items-center justify-center p-4 pb-10">
         <Header />
         <div className="flex flex-col gap-6 items-center justify-center">
-          <div className="sm:w-[580px] w-[85vw] flex flex-col items-center justify-center gap-2">
-            <p className="text-center text-slate-400">
-              Please choose your current unit.
-            </p>
-            <div className="flex w-full items-center justify-center gap-4 ">
-              <SecondaryButton
-                disabled={option === "tekong"}
-                className={
-                  option === "tekong"
-                    ? "cursor-default bg-violet-600 text-slate-50"
-                    : ""
-                }
-                onClick={paramTekong}
-              >
-                BMTC
-              </SecondaryButton>
-              <SecondaryButton
-                disabled={option === "keat-hong-camp"}
-                className={
-                  option === "keat-hong-camp"
-                    ? "cursor-default bg-violet-600 text-slate-50"
-                    : ""
-                }
-                onClick={paramKhc}
-              >
-                40 SAR
-              </SecondaryButton>
-            </div>
-          </div>
           {option === "tekong" && (
             <div className="sm:w-[580px] w-[85vw] flex flex-col items-center justify-center gap-2">
               <p className="text-center text-slate-400">
